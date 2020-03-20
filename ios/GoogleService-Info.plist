@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>1073548340266-v95n5198m0m19pmnbpm26o6i6qd2j91i.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.1073548340266-v95n5198m0m19pmnbpm26o6i6qd2j91i</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBdHOEOZL5DBTVqLKwrMRG7feOe86d8Aj8</string>
+	<key>GCM_SENDER_ID</key>
+	<string>1073548340266</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.SMS</string>
+	<key>PROJECT_ID</key>
+	<string>sms-db-c6ed0</string>
+	<key>STORAGE_BUCKET</key>
+	<string>sms-db-c6ed0.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:1073548340266:ios:78b550c38fc1afbaa9e753</string>
+	<key>DATABASE_URL</key>
+	<string>https://sms-db-c6ed0.firebaseio.com</string>
+</dict>
+</plist>
