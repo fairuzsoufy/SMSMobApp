@@ -15,7 +15,7 @@ class CollapsingListTitle extends StatefulWidget{
 class _CollapsingListTitleState extends State<CollapsingListTitle>
 {
   @override
-  Widget build(BuildContext context)
+  Widget build(BuildContext context) 
   {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 8.0,vertical:8.0),
