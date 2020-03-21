@@ -70,7 +70,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
-        title: Text("AHLA APP"),
+        title: Text("AHLAA APP"),
       ),
       drawer: CollapsingNavigationDrawer(),
 
