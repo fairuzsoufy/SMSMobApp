@@ -1,4 +1,11 @@
 import 'package:SMS/commons/collapsing_navigation_drawer.dart';
+import 'package:SMS/pages/AddDelegates.dart';
+import 'package:SMS/pages/AddEvent.dart';
+import 'package:SMS/pages/Announcments.dart';
+import 'package:SMS/pages/AttendanceHistory.dart';
+import 'package:SMS/pages/Calendar.dart';
+import 'package:SMS/pages/Events.dart';
+import 'package:SMS/pages/takeAttendance.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -12,15 +19,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demoe',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
+       
         primarySwatch: Colors.blue,
       ),
       home: MyHomePage(title: 'Flutter Demo Home Page'),
@@ -31,15 +30,6 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
 
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
   final String title;
 
   @override
@@ -47,34 +37,143 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("ana esmi hamada APeP"),
+    return new Scaffold(
+      appBar: new AppBar(title: new Text('Sidemenu')),
+      drawer: new Drawer(
+        child: ListView(
+          children: <Widget>[
+             SizedBox(height: 50.0,),
+              new ListTile(
+              title: new Text('Fairuz'),
+              leading: new IconButton(
+                icon: Icon(Icons.person)
+              ),),
+              Divider(color: Colors.grey, height: 30.0,),
+            new ListTile(
+              title: new Text("Take Attendance"), 
+              leading: new IconButton(
+                icon: Icon(Icons.mode_edit)
+              ),
+              onTap: () 
+              {
+                Navigator.of(context).pop();
+                Navigator.push(
+                    context,
+                    new MaterialPageRoute(
+                        builder: (BuildContext context) => new TakeAttendance()));
+              },
+            ),
+            new ListTile(
+              title: new Text("Att. History"), 
+              leading: new IconButton(
+                icon: Icon(Icons.playlist_add_check)
+              ),
+              onTap: () 
+              {
+                Navigator.of(context).pop();
+                Navigator.push(
+                    context,
+                    new MaterialPageRoute(
+                        builder: (BuildContext context) => new AttendanceHistory()));
+              },
+            ),
+            new ListTile(
+              title: new Text("Add Event"), 
+              leading: new IconButton(
+                icon: Icon(Icons.add_a_photo)
+              ),
+              onTap: () 
+              {
+                Navigator.of(context).pop();
+                Navigator.push(
+                    context,
+                    new MaterialPageRoute(
+                        builder: (BuildContext context) => new AddEvent()));
+              },
+            ),
+            new ListTile(
+              title: new Text("Events"), 
+              leading: new IconButton(
+                icon: Icon(Icons.calendar_today)
+              ),
+              onTap: () 
+              {
+                Navigator.of(context).pop();
+                Navigator.push(
+                    context,
+                    new MaterialPageRoute(
+                        builder: (BuildContext context) => new Events()));
+              },
+            ),
+            new ListTile(
+              title: new Text("Calendar"), 
+              leading: new IconButton(
+                icon: Icon(Icons.calendar_view_day)
+              ),
+              onTap: () 
+              {
+                Navigator.of(context).pop();
+                Navigator.push(
+                    context,
+                    new MaterialPageRoute(
+                        builder: (BuildContext context) => new Calendar()));
+              },
+            ),
+            new ListTile(
+              title: new Text("Add Delegates"), 
+              leading: new IconButton(
+                icon: Icon(Icons.add)
+              ),
+              onTap: () 
+              {
+                Navigator.of(context).pop();
+                Navigator.push(
+                    context,
+                    new MaterialPageRoute(
+                        builder: (BuildContext context) => new AddDelegates()));
+              },
+            ),
+            new ListTile(
+              title: new Text("Announcments"), 
+              leading: new IconButton(
+                icon: Icon(Icons.notifications)
+              ),
+              onTap: () 
+              {
+                Navigator.of(context).pop();
+                Navigator.push(
+                    context,
+                    new MaterialPageRoute(
+                        builder: (BuildContext context) => new Announcments()));
+              },
+            ),
+            new ListTile(
+              title: new Text("Settings"), 
+              leading: new IconButton(
+                icon: Icon(Icons.settings)
+              ),
+              onTap: () 
+              {
+                Navigator.of(context).pop();
+                Navigator.push(
+                    context,
+                    new MaterialPageRoute(
+                        builder: (BuildContext context) => new Announcments()));
+              },
+            ),
+            
+          ],
+        ),
       ),
-      drawer: CollapsingNavigationDrawer(),
-
-      
-     );//Scaffold
+    );
   }
+}
+
+
+Widget menu ()
+{
+
 }
