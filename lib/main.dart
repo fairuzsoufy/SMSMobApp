@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Flutter Demoe',
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -70,7 +70,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
-        title: Text("AHLAA APP"),
+        title: Text("ana esmi hamada APeP"),
       ),
       drawer: CollapsingNavigationDrawer(),
 
