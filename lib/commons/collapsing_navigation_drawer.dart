@@ -1,6 +1,5 @@
 import 'package:SMS/commons/collapsing_list_title.dart';
 import 'package:SMS/model/navigation_model.dart';
-import 'package:SMS/theme.dart';
 import 'package:flutter/material.dart';
 class CollapsingNavigationDrawer extends StatefulWidget {
   @override
@@ -19,7 +18,6 @@ class CollapsingNavigationDrawerState extends State<CollapsingNavigationDrawer>
   @override
   Widget build(BuildContext context){
     return Container(width: 250.0,
-    color: drawerBackgroundColor,
     child: Column(
       children: <Widget>[
         SizedBox(height: 50.0,),
