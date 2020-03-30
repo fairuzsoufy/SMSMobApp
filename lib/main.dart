@@ -1,4 +1,5 @@
-import 'package:SMS/wrapper.dart';
+import 'package:SMS/authenticate/register.dart';
+import 'package:SMS/authenticate/sign_in.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -10,7 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Wrapper(),
+      home: Register(),
     );
   }
 }
