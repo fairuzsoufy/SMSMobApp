@@ -22,16 +22,41 @@ class _SignInState extends State<SignIn> {
   Widget build(BuildContext context) {
     return loading ? Loading() : Scaffold(
       body: Container(
-        color: Colors.brown,
-        padding: EdgeInsets.symmetric(vertical:20.0, horizontal: 50.0),
-        child: Form(
+        color: Colors.black,
+        padding: EdgeInsets.all(50.0),
+        alignment: Alignment.center, //centers the children
+        child: SingleChildScrollView( //allows scrolling
+          child: Form(
           key: _formKey,
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              SizedBox(height: 20.0,),
+              SizedBox(
+                width: 250.0,
+                height: 250.0,
+                child: Image.asset(
+                  "assets/images/logo.png",
+                  width: 155.0,
+                height: 125.0,
+                  fit: BoxFit.cover
+                ),
+              ),
+              SizedBox(height: 80.0,),
               TextFormField(
                 decoration: textInputDecoration.copyWith(hintText: 'Email'),
-                validator: (val) => val.isEmpty ? 'Enter an email' : null,
+                validator: (String value) {
+                  if (value.isEmpty) {
+                    return 'Email is Required';
+                  }
+
+                  if (!RegExp(
+                          r"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")
+                      .hasMatch(value)) {
+                    return 'Please enter a valid email Address';
+                  }
+
+                  return null;
+                },
                 onChanged: (val)
                 {
                   setState(() => email=val);
@@ -45,12 +70,17 @@ class _SignInState extends State<SignIn> {
                 obscureText: true,
                 onChanged: (val){
                   setState(() => password=val);
-
                 },
               ),
               SizedBox(height: 20.0,),
-              RaisedButton(
-                color: Colors.pink[400],
+              
+              ButtonTheme(
+              
+                minWidth: 325.0,
+                height: 50.0,
+                child: RaisedButton(
+                
+                color: Colors.red[400],
                 child: Text('Sign In', style: TextStyle(color: Colors.white)),
                 onPressed: () async{
                   if(_formKey.currentState.validate())
@@ -70,17 +100,22 @@ class _SignInState extends State<SignIn> {
                   
                 }
               ),
+              ),
               SizedBox(height: 20.0,),
               Text(
                 error, 
                 style: TextStyle(color: Colors.red, fontSize: 14.0),
               ),
+              
             ],
 
           ),
           ),
+          
       
     ),
-    );
+      
+    ),);
   }
 }
+

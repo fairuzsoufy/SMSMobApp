@@ -1,4 +1,4 @@
-import 'package:SMS/theme.dart';
+
 import 'package:flutter/material.dart';
 
 class CollapsingListTitle extends StatefulWidget{
@@ -22,7 +22,7 @@ class _CollapsingListTitleState extends State<CollapsingListTitle>
       child: Row(children: <Widget>[
         Icon(widget.icon, color: Colors.white30, size: 38.0,),
         SizedBox(width: 10.0),
-        Text(widget.title,style: listTitleDefaultTextStyle,)
+        Text('hamo')
       
         ],
       ),
