@@ -1,10 +1,15 @@
-import 'package:SMS/authenticate/register.dart';
-import 'package:SMS/authenticate/sign_in.dart';
+
+import 'package:SMS/models/user.dart';
+import 'package:SMS/services/auth.dart';
+import 'package:SMS/wrapper.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:splashscreen/splashscreen.dart';
+
 
 void main() {
   runApp(new MaterialApp(
+    //theme: ThemeData.dark(),
     debugShowCheckedModeBanner: false,
     home: new MyApp(),
   ));
@@ -35,8 +40,11 @@ class _MyAppState extends State<MyApp> {
 class AfterSplash extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: SignIn(),
+    return StreamProvider<User>.value(
+      value: AuthService().user,
+      child: MaterialApp(
+        home:Wrapper(),
+      ),
     );
   }
 }

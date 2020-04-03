@@ -1,3 +1,4 @@
+import 'package:SMS/authenticate/sign_in.dart';
 import 'package:SMS/services/auth.dart';
 import 'package:SMS/shared/constants.dart';
 import 'package:SMS/shared/loading.dart';
@@ -31,6 +32,33 @@ class _RegisterState extends State<Register> {
           child: Column(
             children: <Widget>[
               SizedBox(height: 20.0,),
+              TextFormField(
+              decoration: textInputDecoration.copyWith(hintText: 'First Name'),
+              validator: (val) => val.isEmpty ? 'Enter first name' : null,
+              onChanged: (val)
+              {
+                //setState(() => email=val);
+
+              },
+            ),
+            TextFormField(
+              decoration: textInputDecoration.copyWith(hintText: 'Middle Name'),
+              validator: (val) => val.isEmpty ? 'Enter middle name' : null,
+              onChanged: (val)
+              {
+                //setState(() => email=val);
+
+              },
+            ),
+            TextFormField(
+              decoration: textInputDecoration.copyWith(hintText: 'Last Name'),
+              validator: (val) => val.isEmpty ? 'Enter last name' : null,
+              onChanged: (val)
+              {
+                //setState(() => email=val);
+
+              },
+            ),
               TextFormField(
                 decoration: textInputDecoration.copyWith(hintText: 'Email'),
                 validator: (val) => val.isEmpty ? 'Enter an email' : null,
@@ -66,6 +94,14 @@ class _RegisterState extends State<Register> {
                         loading = false;
                       });
                      
+                    }
+                    else
+                    {
+                      Navigator.of(context).pop();
+                      Navigator.push(
+                          context,
+                          new MaterialPageRoute(
+                              builder: (BuildContext context) => new SignIn()));
                     }
                   }
                   

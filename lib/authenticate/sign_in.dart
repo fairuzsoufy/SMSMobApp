@@ -1,3 +1,6 @@
+import 'package:SMS/authenticate/forget_password.dart';
+import 'package:SMS/authenticate/register.dart';
+import 'package:SMS/pages/Dashboard.dart';
 import 'package:SMS/services/auth.dart';
 import 'package:SMS/shared/loading.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +26,7 @@ class _SignInState extends State<SignIn> {
     return loading ? Loading() : Scaffold(
       body: Container(
         color: Colors.black,
-        padding: EdgeInsets.all(50.0),
+        padding: EdgeInsets.all(40.0),
         alignment: Alignment.center, //centers the children
         child: SingleChildScrollView( //allows scrolling
           child: Form(
@@ -75,11 +78,9 @@ class _SignInState extends State<SignIn> {
               SizedBox(height: 20.0,),
               
               ButtonTheme(
-              
                 minWidth: 325.0,
                 height: 50.0,
                 child: RaisedButton(
-                
                 color: Colors.red[400],
                 child: Text('Sign In', style: TextStyle(color: Colors.white)),
                 onPressed: () async{
@@ -96,6 +97,14 @@ class _SignInState extends State<SignIn> {
                       }
                       , );
                     }
+                    else
+                    {
+                      Navigator.of(context).pop();
+                      Navigator.push(
+                          context,
+                          new MaterialPageRoute(
+                              builder: (BuildContext context) => new Dashboard()));
+                    }
                   }
                   
                 }
@@ -107,6 +116,40 @@ class _SignInState extends State<SignIn> {
                 style: TextStyle(color: Colors.red, fontSize: 14.0),
               ),
               
+              
+              new Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                InkWell(
+                onTap: () {
+                   Navigator.of(context).pop();
+                      Navigator.push(
+                          context,
+                          new MaterialPageRoute(
+                              builder: (BuildContext context) => new ForgetPassword()));
+                },
+                child: Container(
+                  child: Text('Forget Password?', style: TextStyle(color: Colors.white)),
+                  
+                ),
+              ),
+                InkWell(
+                onTap: () {
+                  Navigator.of(context).pop();
+                      Navigator.push(
+                          context,
+                          new MaterialPageRoute(
+                              builder: (BuildContext context) => new Register()));
+                },
+                child: Container(
+                  child: Text('New User?', style: TextStyle(color: Colors.white)),
+                  
+                  
+                ),
+                
+              ),
+              ]
+            )
             ],
 
           ),

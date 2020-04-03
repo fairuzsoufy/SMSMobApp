@@ -43,6 +43,9 @@ dependencies:
   #splash screen
   splashscreen: ^1.2.0
 
+  #provider
+  provider: ^4.0.4
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
