@@ -44,7 +44,7 @@ class _SignInState extends State<SignIn> {
                   fit: BoxFit.cover
                 ),
               ),
-              SizedBox(height: 80.0,),
+              SizedBox(height: 60.0,),
               TextFormField(
                 decoration: textInputDecoration.copyWith(hintText: 'Email'),
                 validator: (String value) {
@@ -110,24 +110,22 @@ class _SignInState extends State<SignIn> {
                 }
               ),
               ),
-              SizedBox(height: 20.0,),
+              SizedBox(height: 15.0,),
               Text(
                 error, 
+                textAlign: TextAlign.center,
                 style: TextStyle(color: Colors.red, fontSize: 14.0),
               ),
-              
+              SizedBox(height: 15.0,),
               
               new Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 InkWell(
                 onTap: () {
-                   Navigator.of(context).pop();
-                      Navigator.push(
-                          context,
-                          new MaterialPageRoute(
-                              builder: (BuildContext context) => new ForgetPassword()));
-                },
+                Navigator.push(context,MaterialPageRoute(builder: (context) => ForgetPassword(),
+                ),);
+              },
                 child: Container(
                   child: Text('Forget Password?', style: TextStyle(color: Colors.white)),
                   
@@ -135,12 +133,9 @@ class _SignInState extends State<SignIn> {
               ),
                 InkWell(
                 onTap: () {
-                  Navigator.of(context).pop();
-                      Navigator.push(
-                          context,
-                          new MaterialPageRoute(
-                              builder: (BuildContext context) => new Register()));
-                },
+                Navigator.push(context,MaterialPageRoute(builder: (context) => Register(),
+                ),);
+              },
                 child: Container(
                   child: Text('New User?', style: TextStyle(color: Colors.white)),
                   

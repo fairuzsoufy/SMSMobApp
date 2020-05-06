@@ -7,6 +7,7 @@ import 'package:SMS/pages/Events.dart';
 import 'package:SMS/pages/Settings.dart';
 import 'package:SMS/pages/takeAttendance.dart';
 import 'package:SMS/services/auth.dart';
+import 'package:SMS/wrapper.dart';
 import 'package:flutter/material.dart';
 
 class Dashboard extends StatefulWidget {
@@ -35,15 +36,7 @@ class _DashboardState extends State<Dashboard> {
               Divider(color: Colors.grey, height: 30.0,),
             new ListTile(
               title: new Text("Take Attendance"), 
-              leading: new IconButton(
-                icon: Icon(Icons.mode_edit),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => TakeAttendance()),
-                  );
-                }
-              ),
+              leading: Icon(Icons.mode_edit),
               onTap: () 
               {
                 Navigator.of(context).pop();
@@ -55,96 +48,74 @@ class _DashboardState extends State<Dashboard> {
             ),
             new ListTile(
               title: new Text("Attendance History"), 
-              leading: new IconButton(
-                icon: Icon(Icons.playlist_add_check),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => AttendanceHistory()),
-                  );
-                }
-              ),
+              leading: Icon(Icons.playlist_add_check),
+              onTap: () {
+                Navigator.push(context,MaterialPageRoute(builder: (context) => AttendanceHistory(),
+                ),);
+              },
+
             ),
             new ListTile(
               title: new Text("Add Event"), 
-              leading: new IconButton(
-                icon: Icon(Icons.add_a_photo),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => AddEvent()),
-                  );
-                }
-              ),
+              leading: Icon(Icons.add_a_photo),
+              onTap: () {
+                Navigator.push(context,MaterialPageRoute(builder: (context) => AddEvent(),
+                ),);
+              },
+              
             ),
             new ListTile(
               title: new Text("Events"), 
-              leading: new IconButton(
-                icon: Icon(Icons.calendar_today),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Events()),
-                  );
-                }
-              ),
+              leading: Icon(Icons.calendar_today),
+              onTap: () {
+                Navigator.push(context,MaterialPageRoute(builder: (context) => Events(),
+                ),);
+              },
+
             ),
             new ListTile(
               title: new Text("Calendar"), 
-              leading: new IconButton(
-                icon: Icon(Icons.calendar_view_day),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Calendar()),
-                  );
-                }
-              ),
+              leading: Icon(Icons.calendar_view_day),
+              onTap: () {
+                Navigator.push(context,MaterialPageRoute(builder: (context) => Calendar(),
+                ),);
+              },
+            
+              
             ),
             new ListTile(
               title: new Text("Add Delegates"), 
-              leading: new IconButton(
-                icon: Icon(Icons.add),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => AddDelegates()),
-                  );
-                }
-              ),
+              leading: Icon(Icons.add),
+              onTap: () {
+                Navigator.push(context,MaterialPageRoute(builder: (context) => AddDelegates(),
+                ),);
+              },
+
             ),
             new ListTile(
               title: new Text("Announcments"), 
-              leading: new IconButton(
-                icon: Icon(Icons.notifications),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Announcments()),
-                  );
-                }
-              ),
+              leading: Icon(Icons.notifications),
+              onTap: () {
+                Navigator.push(context,MaterialPageRoute(builder: (context) => Announcments(),
+                ),);
+              },
             ),
             new ListTile(
-              title: new Text("Settings"),
-              
-              leading: new IconButton(
-                icon: Icon(Icons.settings),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Settings()),
-                  );
-                }
-              ),
+              title: new Text("Settings"), 
+              leading: Icon(Icons.settings),
+              onTap: () {
+                Navigator.push(context,MaterialPageRoute(builder: (context) => Settings(),
+                ),);
+              },
             ),
             new ListTile(
               title: new Text("Sign Out"), 
               leading: new IconButton(
                 icon: Icon(Icons.settings),
                 onPressed: ()async {
-                 
+                 Navigator.push(context,MaterialPageRoute(builder: (context) => Wrapper()));
                   await _auth.signOut();
+                  
 
                 }
               ),
