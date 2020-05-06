@@ -23,7 +23,7 @@ class _RegisterState extends State<Register> {
   Widget build(BuildContext context) {
     return loading ? Loading() : Scaffold(
       appBar: AppBar(
-        title: Text('sign in'),
+        title: Text('Register Page'),
       ),
       body: Container(
         padding: EdgeInsets.symmetric(vertical:20.0, horizontal: 50.0),
@@ -90,7 +90,7 @@ class _RegisterState extends State<Register> {
                     if (result == null)
                     {
                       setState(() {
-                        error = 'you dont have an acc';
+                        error = 'yoru dont have an acc';
                         loading = false;
                       });
                      

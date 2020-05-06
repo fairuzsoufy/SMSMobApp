@@ -126,7 +126,8 @@ class _DashboardState extends State<Dashboard> {
               ),
             ),
             new ListTile(
-              title: new Text("Settings"), 
+              title: new Text("Settings"),
+              
               leading: new IconButton(
                 icon: Icon(Icons.settings),
                 onPressed: () {

@@ -1,5 +1,4 @@
 import 'package:SMS/models/user.dart';
-import 'package:SMS/services/database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthService {
@@ -32,10 +31,10 @@ class AuthService {
   //Register with email and password
   Future registerWithEmailAndPassword(String email, String password) async{
     try{
-      AuthResult result = await _auth.createUserWithEmailAndPassword(email: email, password: password);
+      AuthResult result = await _auth.createUserWithEmailAndPassword(email: email.trim(), password: password.trim());
       FirebaseUser user = result.user;
       // create a new document for the user with the id
-      await DatabaseService(uid: user.uid).updateUserData('fairi','md','ln');
+      //await DatabaseService(uid: user.uid).updateUserData('fairi','md','ln');
       return _userFromFirebaseUser(user);
     }
     catch (e){
@@ -48,7 +47,7 @@ class AuthService {
   Future signInWithEmailAndPassword(String email, String password) async
   {
     try{
-      AuthResult result = await _auth.signInWithEmailAndPassword(email: email, password: password);
+      AuthResult result = await _auth.signInWithEmailAndPassword(email: email.trim(), password: password.trim());
       FirebaseUser user = result.user;
       return _userFromFirebaseUser(user);
     }
