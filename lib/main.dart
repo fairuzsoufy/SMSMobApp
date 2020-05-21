@@ -1,5 +1,8 @@
 
+//import 'dart:js';
+
 import 'package:SMS/models/user.dart';
+import 'package:SMS/pages/Dashboard.dart';
 import 'package:SMS/services/auth.dart';
 import 'package:SMS/wrapper.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +15,8 @@ void main() {
     //theme: ThemeData.dark(),
     debugShowCheckedModeBanner: false,
     home: new MyApp(),
+    //theme: Theme.of(context).copyWith(primaryColor: Colors.red),
+    
   ));
 }
 
@@ -43,7 +48,8 @@ class AfterSplash extends StatelessWidget {
     return StreamProvider<User>.value(
       value: AuthService().user,
       child: MaterialApp(
-        home:Wrapper(),
+        home:Dashboard(),
+        
       ),
     );
   }

@@ -1,3 +1,4 @@
+
 import 'package:SMS/authenticate/sign_in.dart';
 import 'package:SMS/services/auth.dart';
 import 'package:SMS/shared/constants.dart';
@@ -16,49 +17,82 @@ class _RegisterState extends State<Register> {
 
   String email ='';
   String password='';
+  String fname = '';
+  String mname;
+  String lname;
+  String type;
   String error = '';
   bool loading = false;
+  //String selectedUser;
+  String hintText = 'Password';
+  
+  bool _isHidden = true;
+
+  void toggleVisibility(){
+    setState(() {
+      _isHidden = !_isHidden;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return loading ? Loading() : Scaffold(
-      appBar: AppBar(
-        title: Text('Register Page'),
-      ),
       body: Container(
-        padding: EdgeInsets.symmetric(vertical:20.0, horizontal: 50.0),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            children: <Widget>[
+        //color: Colors.black,
+        padding: EdgeInsets.all(40.0),
+        alignment: Alignment.center, //centers the children
+        child: SingleChildScrollView(
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: <Widget>[
               SizedBox(height: 20.0,),
+
               TextFormField(
-              decoration: textInputDecoration.copyWith(hintText: 'First Name'),
-              validator: (val) => val.isEmpty ? 'Enter first name' : null,
-              onChanged: (val)
-              {
-                //setState(() => email=val);
+                decoration: textInputDecoration.copyWith(hintText: 'First Name'),
+                validator: (val) => val.isEmpty ? 'Enter first name' : null,
+                onChanged: (val)
+                {
+                  setState(() => fname=val);
 
-              },
-            ),
-            TextFormField(
-              decoration: textInputDecoration.copyWith(hintText: 'Middle Name'),
-              validator: (val) => val.isEmpty ? 'Enter middle name' : null,
-              onChanged: (val)
-              {
-                //setState(() => email=val);
+                },
+              ),
 
-              },
-            ),
-            TextFormField(
-              decoration: textInputDecoration.copyWith(hintText: 'Last Name'),
-              validator: (val) => val.isEmpty ? 'Enter last name' : null,
-              onChanged: (val)
-              {
-                //setState(() => email=val);
+              TextFormField(
+                decoration: textInputDecoration.copyWith(hintText: 'Middle Name'),
+                validator: (val) => val.isEmpty ? 'Enter middle name' : null,
+                onChanged: (val)
+                {
+                  setState(() => mname=val);
+                },
+              ),
 
-              },
-            ),
+              TextFormField(
+                decoration: textInputDecoration.copyWith(hintText: 'Last Name'),
+                validator: (val) => val.isEmpty ? 'Enter last name' : null,
+                onChanged: (val)
+                {
+                  setState(() => lname=val);
+                },
+              ),
+
+              DropdownButton<String>(
+                hint: new Text("Select a user"),
+                value: type,
+                onChanged: (String newValue) 
+                {
+                  setState(() {
+                  type = newValue;
+                  //error = selectedUser;
+                  });
+                },
+                items: [
+                  DropdownMenuItem(value: '1', child: Text('Delegate or Student')),
+                  DropdownMenuItem(value: '2', child: Text('Member')),
+                ],
+           
+              ),
+
               TextFormField(
                 decoration: textInputDecoration.copyWith(hintText: 'Email'),
                 validator: (val) => val.isEmpty ? 'Enter an email' : null,
@@ -68,16 +102,27 @@ class _RegisterState extends State<Register> {
 
                 },
               ),
+
               SizedBox(height: 20.0,),
+
               TextFormField(
-                decoration: textInputDecoration.copyWith(hintText: 'Password'),
+                decoration: textInputDecoration.copyWith(hintText: hintText,
+                
+                suffixIcon: IconButton(icon: Icon(Icons.visibility_off), onPressed: (){
+                  toggleVisibility();
+                  
+                },
+                
+                )
+                ),
+                
                 validator: (val) => val.length < 6 ? 'Minimum charchters are 6' : null,
-                obscureText: true, // covers the password
+                obscureText: hintText == 'Password' ? _isHidden : false,
                 onChanged: (val){
                   setState(() => password=val);
-
                 },
               ),
+
               SizedBox(height: 20.0,),
               RaisedButton(
                 color: Colors.pink[400],
@@ -86,7 +131,8 @@ class _RegisterState extends State<Register> {
                   if(_formKey.currentState.validate())
                   {
                     setState(() => loading = true);
-                    dynamic result = await _auth.registerWithEmailAndPassword(email.trim(), password.trim());
+                    
+                    dynamic result = await _auth.registerWithEmailAndPassword(email.trim(), password.trim(), fname, mname, lname, type);
                     if (result == null)
                     {
                       setState(() {
@@ -108,16 +154,19 @@ class _RegisterState extends State<Register> {
                 },
               ),
               SizedBox(height: 20.02,),
+              
               Text(
                 error, 
                 style: TextStyle(color: Colors.red, fontSize: 14.0),
               ),
+              
             ],
 
           ),
           ),
       
     ),
+      ),
     );
   }
 }

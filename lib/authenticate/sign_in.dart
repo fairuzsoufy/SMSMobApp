@@ -13,14 +13,23 @@ class SignIn extends StatefulWidget {
 
 class _SignInState extends State<SignIn> {
 
+  //final DatabaseService dbRef = FirebaseDatabase.instance.reference().child("Users");
   final AuthService _auth = AuthService();
   final _formKey = GlobalKey<FormState>();
+  
 
   String email ='';
   String password='';
   String error = '';
   bool loading = false;
+  bool _isHidden = true;
 
+  void toggleVisibility(){
+    setState(() {
+      _isHidden = !_isHidden;
+    });
+  }
+  String hintText = 'Password';
   @override
   Widget build(BuildContext context) {
     return loading ? Loading() : Scaffold(
@@ -46,7 +55,8 @@ class _SignInState extends State<SignIn> {
               ),
               SizedBox(height: 60.0,),
               TextFormField(
-                decoration: textInputDecoration.copyWith(hintText: 'Email'),
+                decoration: textInputDecoration.copyWith(hintText: 'Email',
+                prefixIcon: Icon(Icons.email) ,),
                 validator: (String value) {
                   if (value.isEmpty) {
                     return 'Email is Required';
@@ -68,9 +78,18 @@ class _SignInState extends State<SignIn> {
               ),
               SizedBox(height: 20.0,),
               TextFormField(
-                decoration: textInputDecoration.copyWith(hintText: 'Password'),
+                decoration: textInputDecoration.copyWith(hintText: hintText,
+                prefixIcon: Icon(Icons.lock),
+                suffixIcon: IconButton(icon: Icon(Icons.visibility_off), onPressed: (){
+                  toggleVisibility();
+                  
+                },
+                
+                )
+                ),
+                
                 validator: (val) => val.length < 6 ? 'Minimum charchters are 6' : null,
-                obscureText: true,
+                obscureText: hintText == 'Password' ? _isHidden : false,
                 onChanged: (val){
                   setState(() => password=val);
                 },
@@ -88,6 +107,8 @@ class _SignInState extends State<SignIn> {
                   {
                     setState(() => loading = true);
                     dynamic result = await _auth.signInWithEmailAndPassword(email, password);
+                    
+                    //print(result);
                     if (result == null)
                     {
                       setState(() 

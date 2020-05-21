@@ -1,3 +1,6 @@
+//import 'dart:js';
+
+import 'package:SMS/models/user.dart';
 import 'package:SMS/pages/AddDelegates.dart';
 import 'package:SMS/pages/AddEvent.dart';
 import 'package:SMS/pages/Announcments.dart';
@@ -8,32 +11,37 @@ import 'package:SMS/pages/Settings.dart';
 import 'package:SMS/pages/takeAttendance.dart';
 import 'package:SMS/services/auth.dart';
 import 'package:SMS/wrapper.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class Dashboard extends StatefulWidget {
   @override
   _DashboardState createState() => _DashboardState();
 }
-
-class _DashboardState extends State<Dashboard> {
-
+  
+class _DashboardState extends State<Dashboard>{
   final AuthService _auth = AuthService();
   
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
+    
+    return  Scaffold(
       
-      appBar: new AppBar(title: new Text('YARAB TESHTGHALO')),
+      appBar: new AppBar(title: Text('home ')),
+      
       drawer: new Drawer(
         child: ListView(
           children: <Widget>[
              SizedBox(height: 50.0,),
+             
               new ListTile(
-              title: new Text('Fairuzz'),
+              title: new Text('fizo'),
               leading: new IconButton(
                 icon: Icon(Icons.person), onPressed: () {  },
               ),),
               Divider(color: Colors.grey, height: 30.0,),
+              //UsersList(),
             new ListTile(
               title: new Text("Take Attendance"), 
               leading: Icon(Icons.mode_edit),
