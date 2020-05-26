@@ -13,6 +13,9 @@ class AuthService {
     return user != null ? User(uid:user.uid) : null;
   }
 
+  Stream<String> get onAuthStateChanged => _auth.onAuthStateChanged.map((
+    FirebaseUser user) => user?.uid,);
+    
   //auth change user stream
   Stream<User> get user{
     return _auth.onAuthStateChanged.map(_userFromFirebaseUser);

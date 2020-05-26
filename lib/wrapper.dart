@@ -9,6 +9,7 @@ class Wrapper extends StatelessWidget{
   Widget build(BuildContext context){
     
     final user = Provider.of<User>(context);
+    //String id = user.uid;
     if(user==null)
     {
       return SignIn();

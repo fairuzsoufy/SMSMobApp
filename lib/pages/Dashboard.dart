@@ -1,4 +1,3 @@
-//import 'dart:js';
 
 import 'package:SMS/models/user.dart';
 import 'package:SMS/pages/AddDelegates.dart';
@@ -11,9 +10,7 @@ import 'package:SMS/pages/Settings.dart';
 import 'package:SMS/pages/takeAttendance.dart';
 import 'package:SMS/services/auth.dart';
 import 'package:SMS/wrapper.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class Dashboard extends StatefulWidget {
   @override
@@ -25,21 +22,37 @@ class _DashboardState extends State<Dashboard>{
   
   @override
   Widget build(BuildContext context) {
-    
     return  Scaffold(
-      
-      appBar: new AppBar(title: Text('home ')),
-      
+      appBar: new AppBar(title: Text('home')),
       drawer: new Drawer(
         child: ListView(
           children: <Widget>[
              SizedBox(height: 50.0,),
-             
+             StreamBuilder(
+               stream: User().getUserFname(),
+               builder: (context,snapshot)
+               {
+                 if(!snapshot.hasData)
+                 {return Text('Loading');}
+                 return Column(
+                   children: <Widget>[
+                     new ListTile(
+                      title: new Text(snapshot.data.documents[0]['fname']),
+                      leading: new IconButton(
+                        icon: Icon(Icons.person), onPressed: () {  },
+                      ),
+                      ),
+                   ],
+                 );
+               },
+             ),
+             //Text(),
               new ListTile(
               title: new Text('fizo'),
               leading: new IconButton(
                 icon: Icon(Icons.person), onPressed: () {  },
-              ),),
+              ),
+              ),
               Divider(color: Colors.grey, height: 30.0,),
               //UsersList(),
             new ListTile(
@@ -135,3 +148,4 @@ class _DashboardState extends State<Dashboard>{
     );
   }
 }
+
