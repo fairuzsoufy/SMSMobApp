@@ -7,8 +7,10 @@ class User{
   final String mname;
   final String lname;
   final String type;
+  final String faculty;
+  final String studentId;
   
-  User({this.uid, this.fname, this.mname, this.lname, this.type});
+  User({this.uid, this.fname, this.mname, this.lname, this.type, this.faculty, this.studentId});
 
 
   Stream<User>  userdataaa (uid)
@@ -25,7 +27,8 @@ class User{
       lname: snapshot.data['lname'], 
       type: snapshot.data['type'],
       uid: uid,
-      //uid: uid,
+      faculty: snapshot.data['faculty'],
+      studentId: snapshot.data['studentId'],
     );
   }
 

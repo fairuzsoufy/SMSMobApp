@@ -15,5 +15,6 @@ class _AddEventState extends State<AddEvent>
         title: new Text('Add event'),
       ),
     );
+    
   }
 }

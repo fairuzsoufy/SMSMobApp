@@ -4,6 +4,7 @@ import 'package:SMS/services/auth.dart';
 import 'package:SMS/shared/constants.dart';
 import 'package:SMS/shared/loading.dart';
 import 'package:flutter/material.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 
 class Register extends StatefulWidget {
   @override
@@ -21,6 +22,8 @@ class _RegisterState extends State<Register> {
   String mname;
   String lname;
   String type;
+  String faculty;
+  String studentId;
   String error = '';
   bool loading = false;
   //String selectedUser;
@@ -56,8 +59,11 @@ class _RegisterState extends State<Register> {
                   setState(() => fname=val);
 
                 },
+
+                
               ),
 
+              
               TextFormField(
                 decoration: textInputDecoration.copyWith(hintText: 'Middle Name'),
                 validator: (val) => val.isEmpty ? 'Enter middle name' : null,
@@ -76,6 +82,15 @@ class _RegisterState extends State<Register> {
                 },
               ),
 
+              TextFormField(
+                decoration: textInputDecoration.copyWith(hintText: 'Student ID'),
+                validator: (val) => val.isEmpty ? 'Enter Student ID' : null,
+                onChanged: (val)
+                {
+                  setState(() => studentId=val);
+                },
+              ),
+
               DropdownButton<String>(
                 hint: new Text("Select a user"),
                 value: type,
@@ -89,6 +104,30 @@ class _RegisterState extends State<Register> {
                 items: [
                   DropdownMenuItem(value: '1', child: Text('Delegate or Student')),
                   DropdownMenuItem(value: '2', child: Text('Member')),
+                ],
+           
+              ),
+
+              DropdownButton<String>(
+                hint: new Text("Select faculty"),
+                value: faculty,
+                onChanged: (String newValue) 
+                {
+                  setState(() {
+                  faculty = newValue;
+                  //error = selectedUser;
+                  });
+                },
+                items: [
+                  DropdownMenuItem(value: 'Alsun', child: Text('Alsun')),
+                  DropdownMenuItem(value: 'Architecture', child: Text('Architecture')),
+                  DropdownMenuItem(value: 'Business', child: Text('Business')),
+                  DropdownMenuItem(value: 'Computer Sience', child: Text('Computer Science')),
+                  DropdownMenuItem(value: 'Dental Medicine', child: Text('Dental Medicine')),
+                  DropdownMenuItem(value: 'Electronics', child: Text('Electronics')),
+                  DropdownMenuItem(value: 'Mass Communication', child: Text('Mass Communication')),
+                  DropdownMenuItem(value: 'Pharmacy', child: Text('Pharmacy')),
+                  
                 ],
            
               ),
@@ -132,7 +171,7 @@ class _RegisterState extends State<Register> {
                   {
                     setState(() => loading = true);
                     
-                    dynamic result = await _auth.registerWithEmailAndPassword(email.trim(), password.trim(), fname, mname, lname, type);
+                    dynamic result = await _auth.registerWithEmailAndPassword(email.trim(), password.trim(), fname, mname, lname, type, faculty, studentId);
                     if (result == null)
                     {
                       setState(() {
@@ -143,11 +182,14 @@ class _RegisterState extends State<Register> {
                     }
                     else
                     {
+                      
                       Navigator.of(context).pop();
+                      
                       Navigator.push(
                           context,
                           new MaterialPageRoute(
                               builder: (BuildContext context) => new SignIn()));
+                              
                     }
                   }
                   

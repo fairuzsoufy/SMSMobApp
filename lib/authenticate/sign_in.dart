@@ -111,8 +111,8 @@ class _SignInState extends State<SignIn> {
                     setState(() => loading = true);
                      //String currentuser = FirebaseAuth.getInstance().getUid();
                     dynamic result = await _auth.signInWithEmailAndPassword(email, password);
-                    print(result);
-                    print('hamo');
+                    //print(result);
+                    //print('hamo');
                     //print(result);
                     if (result == null)
                     {
