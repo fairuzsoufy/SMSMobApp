@@ -1,12 +1,16 @@
+//import 'dart:js';
+
 import 'package:SMS/authenticate/forget_password.dart';
 import 'package:SMS/authenticate/register.dart';
 import 'package:SMS/pages/Dashboard.dart';
 import 'package:SMS/services/auth.dart';
 import 'package:SMS/shared/loading.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:SMS/shared/constants.dart';
 
 class SignIn extends StatefulWidget {
+  
   @override
   _SignInState createState() => _SignInState();
 }
@@ -106,8 +110,10 @@ class _SignInState extends State<SignIn> {
                   if(_formKey.currentState.validate())
                   {
                     setState(() => loading = true);
+                     //String currentuser = FirebaseAuth.getInstance().getUid();
                     dynamic result = await _auth.signInWithEmailAndPassword(email, password);
-                    
+                    print(result);
+                    print('hamo');
                     //print(result);
                     if (result == null)
                     {
@@ -120,11 +126,11 @@ class _SignInState extends State<SignIn> {
                     }
                     else
                     {
-                      Navigator.of(context).pop();
+                      //Navigator.of(context).pop();
                       Navigator.push(
                           context,
                           new MaterialPageRoute(
-                              builder: (BuildContext context) => new Dashboard()));
+                              builder: (BuildContext context) => new Dashboard(value: 'aloo')));
                     }
                   }
                   
@@ -176,5 +182,7 @@ class _SignInState extends State<SignIn> {
       
     ),);
   }
+
 }
+
 

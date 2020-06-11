@@ -9,52 +9,92 @@ import 'package:SMS/pages/Events.dart';
 import 'package:SMS/pages/Settings.dart';
 import 'package:SMS/pages/takeAttendance.dart';
 import 'package:SMS/services/auth.dart';
+import 'package:SMS/shared/loading.dart';
 import 'package:SMS/wrapper.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class Dashboard extends StatefulWidget {
+class Dashboard extends StatefulWidget 
+{
+  
+  final String value;
+  Dashboard({ Key, key, this.value}) : super (key:key);
+
   @override
   _DashboardState createState() => _DashboardState();
 }
   
 class _DashboardState extends State<Dashboard>{
-  final AuthService _auth = AuthService();
+  FirebaseUser user;
   
+  
+  Future <void> getUserData() async
+  {
+    FirebaseUser userData = await FirebaseAuth.instance.currentUser();
+    print(userData);
+    setState(()
+    {
+      user=userData;
+      
+    });
+  }
+
+
+  @override
+  void initState(){
+    super.initState();
+    getUserData();
+  }
+
+  final AuthService _auth = AuthService();
+ 
+
+
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-      appBar: new AppBar(title: Text('home')),
-      drawer: new Drawer(
-        child: ListView(
-          children: <Widget>[
-             SizedBox(height: 50.0,),
-             StreamBuilder(
-               stream: User().getUserFname(),
-               builder: (context,snapshot)
-               {
-                 if(!snapshot.hasData)
-                 {return Text('Loading');}
-                 return Column(
-                   children: <Widget>[
-                     new ListTile(
-                      title: new Text(snapshot.data.documents[0]['fname']),
-                      leading: new IconButton(
-                        icon: Icon(Icons.person), onPressed: () {  },
-                      ),
-                      ),
-                   ],
-                 );
-               },
-             ),
-             //Text(),
-              new ListTile(
-              title: new Text('fizo'),
-              leading: new IconButton(
-                icon: Icon(Icons.person), onPressed: () {  },
-              ),
-              ),
+
+   
+        return  Scaffold(
+          appBar: new AppBar(title: Text('home')),
+          
+          drawer: new Drawer(
+            child: ListView(
+              children: <Widget>[
+
+                StreamBuilder<User>(
+                  stream: User().userdataaa(user.uid),
+                  builder: (context, snapshot)
+                  {
+                    if(snapshot.hasData)
+                    {
+                      User userData = snapshot.data;
+                      return new ListTile(
+                        title: new Text(userData.fname), 
+                        leading: Icon(Icons.person),
+                        onTap: () 
+                        {
+                          Navigator.of(context).pop();
+                          Navigator.push(
+                              context,
+                              new MaterialPageRoute(
+                                  builder: (BuildContext context) => new TakeAttendance()));
+                        },
+                      );
+                      //return Text(userData.fname);
+                    }
+                    else
+                    {
+                      return Loading();
+                    }
+                  },
+                ),
+
+         
+            new Text('email: ${user.uid}'),
+            //new Text(getHamoo()),
               Divider(color: Colors.grey, height: 30.0,),
-              //UsersList(),
+              
             new ListTile(
               title: new Text("Take Attendance"), 
               leading: Icon(Icons.mode_edit),
@@ -85,6 +125,7 @@ class _DashboardState extends State<Dashboard>{
               },
               
             ),
+            //new Text(User().getUserFname('mdFD7eCECJMDzCYC8hDXpqKC9ku1')),
             new ListTile(
               title: new Text("Events"), 
               leading: Icon(Icons.calendar_today),
@@ -101,9 +142,8 @@ class _DashboardState extends State<Dashboard>{
                 Navigator.push(context,MaterialPageRoute(builder: (context) => Calendar(),
                 ),);
               },
-            
-              
             ),
+            
             new ListTile(
               title: new Text("Add Delegates"), 
               leading: Icon(Icons.add),
@@ -131,20 +171,17 @@ class _DashboardState extends State<Dashboard>{
             ),
             new ListTile(
               title: new Text("Sign Out"), 
-              leading: new IconButton(
-                icon: Icon(Icons.settings),
-                onPressed: ()async {
-                 Navigator.push(context,MaterialPageRoute(builder: (context) => Wrapper()));
-                  await _auth.signOut();
-                  
-
-                }
-              ),
+              leading: Icon(Icons.exit_to_app),
+              onTap: () async {
+                Navigator.push(context,MaterialPageRoute(builder: (context) => Wrapper()));
+                await _auth.signOut();
+              },
             ),
             
           ],
         ),
       ),
+      
     );
   }
 }
