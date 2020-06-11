@@ -5,7 +5,6 @@ import 'package:SMS/authenticate/register.dart';
 import 'package:SMS/pages/Dashboard.dart';
 import 'package:SMS/services/auth.dart';
 import 'package:SMS/shared/loading.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:SMS/shared/constants.dart';
 
@@ -130,7 +129,7 @@ class _SignInState extends State<SignIn> {
                       Navigator.push(
                           context,
                           new MaterialPageRoute(
-                              builder: (BuildContext context) => new Dashboard(value: 'aloo')));
+                              builder: (BuildContext context) => new Dashboard()));
                     }
                   }
                   

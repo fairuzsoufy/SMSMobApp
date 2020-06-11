@@ -11,17 +11,12 @@ import 'package:SMS/pages/takeAttendance.dart';
 import 'package:SMS/services/auth.dart';
 import 'package:SMS/shared/loading.dart';
 import 'package:SMS/wrapper.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class Dashboard extends StatefulWidget 
 {
-  
-  final String value;
-  Dashboard({ Key, key, this.value}) : super (key:key);
-
-  @override
+    @override
   _DashboardState createState() => _DashboardState();
 }
   
@@ -57,7 +52,6 @@ class _DashboardState extends State<Dashboard>{
    
         return  Scaffold(
           appBar: new AppBar(title: Text('home')),
-          
           drawer: new Drawer(
             child: ListView(
               children: <Widget>[
@@ -81,7 +75,7 @@ class _DashboardState extends State<Dashboard>{
                                   builder: (BuildContext context) => new TakeAttendance()));
                         },
                       );
-                      //return Text(userData.fname);
+                      
                     }
                     else
                     {
@@ -91,7 +85,8 @@ class _DashboardState extends State<Dashboard>{
                 ),
 
          
-            new Text('email: ${user.uid}'),
+            new Text('uid: ${user.uid}'),
+            
             //new Text(getHamoo()),
               Divider(color: Colors.grey, height: 30.0,),
               

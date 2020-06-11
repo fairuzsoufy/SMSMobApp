@@ -4,7 +4,6 @@
 import 'package:SMS/models/user.dart';
 import 'package:SMS/pages/Dashboard.dart';
 import 'package:SMS/services/auth.dart';
-import 'package:SMS/wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:splashscreen/splashscreen.dart';
