@@ -41,6 +41,17 @@ class _ProfileState extends State<Profile> {
               
               SizedBox(height: 60.0,),
               Text('Full Name: ' + userData.fname + ' ' + userData.mname + ' ' + userData.lname,),
+              TextFormField(
+                decoration: textInputDecoration.copyWith(hintText: 'First Name'),
+                validator: (val) => val.isEmpty ? 'Enter first name' : null,
+                onChanged: (val)
+                {
+                  //setState(() => fname=val);
+
+                },
+
+                
+              ),
               Text('Student ID: ' + userData.studentId ),
               Text('Faculty: ' + userData.faculty ),
               
