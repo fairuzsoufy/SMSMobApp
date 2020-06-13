@@ -104,15 +104,7 @@ class _DashboardState extends State<Dashboard>{
 
             ),
 
-            new ListTile(
-              title: new Text("Add Event"), 
-              leading: Icon(Icons.add_a_photo),
-              onTap: () {
-                Navigator.push(context,MaterialPageRoute(builder: (context) => AddEvent(),
-                ),);
-              },
-              
-            ),
+            
             
             new ListTile(
               title: new Text("Events"), 
@@ -180,6 +172,8 @@ class _DashboardState extends State<Dashboard>{
               child: ListView(
                 children: <Widget>[
 
+                  
+
                   new ListTile(
                     title: new Text(userData.fname), 
                     leading: Icon(Icons.person),
@@ -207,6 +201,16 @@ class _DashboardState extends State<Dashboard>{
                 ),);
               },
 
+            ),
+
+            new ListTile(
+              title: new Text("Add Event"), 
+              leading: Icon(Icons.add_a_photo),
+              onTap: () {
+                Navigator.push(context,MaterialPageRoute(builder: (context) => AddEvent(),
+                ),);
+              },
+              
             ),
 
            

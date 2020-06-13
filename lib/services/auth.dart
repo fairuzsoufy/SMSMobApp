@@ -7,6 +7,7 @@ class AuthService {
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
+
   // Create Firebase user object
   User _userFromFirebaseUser(FirebaseUser user)
   {
